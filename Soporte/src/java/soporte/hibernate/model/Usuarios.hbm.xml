@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/08/2013 09:37:16 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="soporte.hibernate.model.Usuarios" table="usuarios" catalog="soporte">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" not-null="true" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" not-null="true" />
+        </property>
+        <property name="contrasenia" type="string">
+            <column name="contrasenia" length="32" not-null="true" />
+        </property>
+        <property name="latitud" type="string">
+            <column name="latitud" />
+        </property>
+        <property name="longitud" type="string">
+            <column name="longitud" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="65535" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" not-null="true" />
+        </property>
+        <property name="activo" type="boolean">
+            <column name="activo" not-null="true" />
+        </property>
+        <set name="puntuacionsForIdUsuarioDestino" inverse="true">
+            <key>
+                <column name="idUsuarioDestino" not-null="true" />
+            </key>
+            <one-to-many class="soporte.hibernate.model.Puntuacion" />
+        </set>
+        <set name="puntuacionsForIdUsuarioOrigen" inverse="true">
+            <key>
+                <column name="idUsuarioOrigen" not-null="true" />
+            </key>
+            <one-to-many class="soporte.hibernate.model.Puntuacion" />
+        </set>
+        <set name="etiquetases" inverse="false" table="usuariosetiquetas">
+            <key>
+                <column name="idUsuario" not-null="true" />
+            </key>
+            <many-to-many entity-name="soporte.hibernate.model.Etiquetas">
+                <column name="idEtiqueta" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

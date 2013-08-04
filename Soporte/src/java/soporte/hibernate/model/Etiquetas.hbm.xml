@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/08/2013 09:37:16 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="soporte.hibernate.model.Etiquetas" table="etiquetas" catalog="soporte">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="40" not-null="true" />
+        </property>
+        <set name="usuarioses" inverse="false" table="usuariosetiquetas">
+            <key>
+                <column name="idEtiqueta" not-null="true" />
+            </key>
+            <many-to-many entity-name="soporte.hibernate.model.Usuarios">
+                <column name="idUsuario" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
