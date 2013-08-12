@@ -62,7 +62,7 @@ public class Puntuacion  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="idUsuarioOrigen", nullable=false)
     public Usuarios getUsuariosByIdUsuarioOrigen() {
         return this.usuariosByIdUsuarioOrigen;
@@ -71,7 +71,7 @@ public class Puntuacion  implements java.io.Serializable {
     public void setUsuariosByIdUsuarioOrigen(Usuarios usuariosByIdUsuarioOrigen) {
         this.usuariosByIdUsuarioOrigen = usuariosByIdUsuarioOrigen;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="idUsuarioDestino", nullable=false)
     public Usuarios getUsuariosByIdUsuarioDestino() {
         return this.usuariosByIdUsuarioDestino;

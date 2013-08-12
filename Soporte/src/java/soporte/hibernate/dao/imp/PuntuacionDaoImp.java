@@ -105,6 +105,7 @@ public class PuntuacionDaoImp implements PuntuacionDao{
                     .createCriteria("soporte.hibernate.model.Puntuacion")
                     .add(Example.create(criteria))
                     .list();
+            //query = session.createSQLQuery("");
             transaction.commit();
             return objects;
         }catch (Exception e) {

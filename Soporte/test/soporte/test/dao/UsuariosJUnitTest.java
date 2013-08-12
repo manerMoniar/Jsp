@@ -23,8 +23,8 @@ public class UsuariosJUnitTest {
     @Ignore
     public void createTest() {
         
-        Usuarios objeto = new Usuarios(1,
-                                        "Alejandro Diaz", //nombre
+        Usuarios objeto = new Usuarios(2,
+                                        "Alejandro Diaz 3", //nombre
                                         "wolf", //usuario
                                         "1234", //contraseña
                                         "wolfd1azs@gmail.com", //email
@@ -120,20 +120,17 @@ public class UsuariosJUnitTest {
     }
     
     @Test
-    @Ignore
+    
     public void findByCriteriaTest() {
         Usuarios criteria = new Usuarios();
-        criteria.setNombre("Roberto Covarrubias");
-        /*Error
-         * Esta buscando por activo y no recibe parametro de criteria
-         * Session closed!
-         */
+        criteria.setUsuario("wolf");
+        criteria.setActivo(true);
         
         UsuariosDaoImp dao = new UsuariosDaoImp();
         
         if(dao.findByCriteria(criteria).size() > 0) {
             
-            for(Usuarios object : dao.findByCriteria(criteria)) {
+            for(Usuarios object : new UsuariosDaoImp().findByCriteria(criteria)) {
                 System.out.println("id: " + object.getId());
                 System.out.println("nombre: " + object.getNombre());
                 System.out.println("usuario: " + object.getUsuario());

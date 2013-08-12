@@ -194,8 +194,9 @@ public class Usuarios  implements java.io.Serializable {
         this.etiquetases = etiquetases;
     }
 
-
-
+    public void agregarListASet(Etiquetas object) {
+        this.etiquetases.add(object); 
+    }
 
 }
 

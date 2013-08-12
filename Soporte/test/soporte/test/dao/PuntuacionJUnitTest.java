@@ -113,24 +113,38 @@ public class PuntuacionJUnitTest {
     @Ignore
     public void findByCriteriaTest() {
        
-        UsuariosDaoImp usuariosDao = new UsuariosDaoImp();
+        int i=0, destino, origen;
         
         Puntuacion criteria = new Puntuacion();
-        criteria.setUsuariosByIdUsuarioDestino(usuariosDao.findById(1)); //No esta pasando los parametros bien al sql
+        Usuarios userOrigen = new UsuariosDaoImp().findById(3);
+        Usuarios userDestino = new UsuariosDaoImp().findById(2);
+        criteria.setUsuariosByIdUsuarioOrigen(userOrigen);
+        criteria.setUsuariosByIdUsuarioDestino(userDestino); //No esta pasando los parametros bien al sql
+        criteria.setPuntos(20);
         
         PuntuacionDaoImp dao = new PuntuacionDaoImp();
         
+        int destinoSeteado = userDestino.getId();
+        int origenSeteado = userOrigen.getId();
+        
         if(dao.findByCriteria(criteria).size() > 0) {
             
-            for(Puntuacion object : dao.findByCriteria(criteria)) {
-                System.out.println("id: " + object.getId());
-                System.out.println("origen: " + object.getUsuariosByIdUsuarioOrigen().getUsuario());
-                System.out.println("destino: " + object.getUsuariosByIdUsuarioDestino().getUsuario());
-                System.out.println("puntos: " + object.getPuntos());
+            for(Puntuacion object : new PuntuacionDaoImp().findByCriteria(criteria)) {
+                destino = (int) object.getUsuariosByIdUsuarioDestino().getId();
+                origen = (int) object.getUsuariosByIdUsuarioOrigen().getId();
+                if(destino == destinoSeteado && origen == origenSeteado) {
+                    System.out.println("id: " + object.getId());
+                    System.out.println("origen: " + new UsuariosDaoImp().findById(object.getUsuariosByIdUsuarioOrigen().getId()).getUsuario());
+                    System.out.println("destino: " + object.getUsuariosByIdUsuarioDestino().getUsuario());
+                    System.out.println("puntos: " + object.getPuntos());
+                    i++;
+                }
             }
         
         }else {
             System.out.println("No hay objetos!");
         }
+        
+        if(i==0) System.out.println("No hay objetos!");
     }
 }

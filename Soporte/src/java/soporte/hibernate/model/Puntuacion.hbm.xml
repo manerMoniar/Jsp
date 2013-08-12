@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="usuariosByIdUsuarioOrigen" class="soporte.hibernate.model.Usuarios" fetch="select">
+        <many-to-one name="usuariosByIdUsuarioOrigen" class="soporte.hibernate.model.Usuarios" fetch="join">
             <column name="idUsuarioOrigen" not-null="true" />
         </many-to-one>
-        <many-to-one name="usuariosByIdUsuarioDestino" class="soporte.hibernate.model.Usuarios" fetch="select">
+        <many-to-one name="usuariosByIdUsuarioDestino" class="soporte.hibernate.model.Usuarios" fetch="join">
             <column name="idUsuarioDestino" not-null="true" />
         </many-to-one>
         <property name="puntos" type="float">

@@ -24,10 +24,9 @@ public class EtiquetasJUnitTest {
     @Ignore
     public void createTest() {
         
-        Etiquetas objeto = new Etiquetas(1,"Dispositivos Moviles");
+        Etiquetas objeto = new Etiquetas("Dispositivos Moviles");
         
-        //Falta el constructor para generar el Usuario asignado a esa etiqueta
-        //UsuariosDaoImp usuariosDao = new UsuariosDaoImp();
+        objeto.agregarListASet(new UsuariosDaoImp().findById(1));
         
         EtiquetasDaoImp dao = new EtiquetasDaoImp();
         
@@ -105,9 +104,6 @@ public class EtiquetasJUnitTest {
     public void findByCriteriaTest() {
         Etiquetas criteria = new Etiquetas();
         criteria.setNombre("Laptops");
-        /*Error
-         * Session closed!
-         */
         
         EtiquetasDaoImp dao = new EtiquetasDaoImp();
         
@@ -122,4 +118,7 @@ public class EtiquetasJUnitTest {
             System.out.println("No hay objetos!");
         }
     }
+    
+    
+    
 }

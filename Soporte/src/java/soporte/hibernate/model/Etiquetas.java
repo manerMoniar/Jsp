@@ -3,6 +3,7 @@ package soporte.hibernate.model;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,6 +37,8 @@ public class Etiquetas  implements java.io.Serializable {
 	
     public Etiquetas(String nombre) {
         this.nombre = nombre;
+        this.id=0;
+        //this.usuarioses = null;
     }
     public Etiquetas(int id, String nombre) {
         this.id = id;
@@ -77,8 +80,9 @@ public class Etiquetas  implements java.io.Serializable {
         this.usuarioses = usuarioses;
     }
 
-
-
+    public void agregarListASet(Usuarios object) {
+        this.usuarioses.add(object); 
+    }
 
 }
 
